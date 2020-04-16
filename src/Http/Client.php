@@ -99,6 +99,10 @@ class Client
             }*/
             
             $lastEventId = $this->getClient()->notifyError($level,$message);
+            $this->getClient()->leaveBreadcrumb(
+                $message,
+                \Bugsnag\Breadcrumbs\Breadcrumb::MANUAL_TYPE
+            );
         }
 
         $context['lastEventId'] = $lastEventId;
