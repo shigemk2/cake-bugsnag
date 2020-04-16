@@ -17,7 +17,4 @@ if ($isCli) {
     (new ErrorHandler(Configure::read('Error', [])))->register();
 }
 
-$errorLogConfig = Log::getConfig('error');
-$errorLogConfig['className'] = BugsnagLog::class;
-Log::drop('error');
-Log::setConfig('error', $errorLogConfig);
+
