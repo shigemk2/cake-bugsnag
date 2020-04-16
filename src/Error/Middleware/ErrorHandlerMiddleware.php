@@ -28,6 +28,9 @@ class ErrorHandlerMiddleware extends BaseErrorHandlerMiddleware
                 'url'     => 'http://gescomweb'
             ));
 
+            $bugsnag->setAppVersion(Configure::read('version'));
+            $bugsnag->setReleaseStage(Configure::read("prod") ?'production':'development');
+
             \Bugsnag\Handler::register($bugsnag);
         }
 
