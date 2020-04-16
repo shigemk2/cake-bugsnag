@@ -21,7 +21,7 @@ Write your Bugsnag account info.
 // in `config/app.php`
 return [
   'Bugsnag' => [
-    'ApiKey' => YOUR_Bugsnag_ApiKey
+    'apiKey' => YOUR_Bugsnag_apiKey
   ]
 ];
 ```

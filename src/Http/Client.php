@@ -114,8 +114,8 @@ class Client
     protected function setupClient()
     {
         $config = (array)Configure::read('Bugsnag');
-        if (!Hash::check($config, 'ApiKey')) {
-            throw new RuntimeException('Bugsnag ApiKey not provided.');
+        if (!Hash::check($config, 'apiKey')) {
+            throw new RuntimeException('Bugsnag apiKey not provided.');
         }
         if (!Hash::get($config, 'before_send')) {
             $config['before_send'] = function () {
