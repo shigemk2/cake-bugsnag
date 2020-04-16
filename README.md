@@ -4,13 +4,13 @@ CakePHP integration for Bugsnag.
 ## Requirements
 - PHP 7.1+
 - CakePHP 4.0+
-- and [Bugsnag](https://Bugsnag.io) account
+- and [Bugsnag](https://Bugsnag.com) account
 
 
 ## Installation
 ### With composer install.
 ```
-composer require ldubois/cake-Bugsnag
+composer require ldubois/cake-bugsnag
 ```
 
 ## Usage
