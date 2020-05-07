@@ -15,21 +15,30 @@ class ErrorHandlerMiddleware extends BaseErrorHandlerMiddleware
     /**
      * @return Client
      */
-    public static function getBugsnag()
+    public static function getBugsnag($request)
     {
         static $bugsnag = null;
-        
+
         if (null === $bugsnag) {
             $bugsnag = \Bugsnag\Client::make(Configure::read('Bugsnag.apiKey'));
             $bugsnag->setBatchSending(false);
             $bugsnag->setNotifier(array(
-                'name'    => Configure::read("name").' ' . Configure::read("prod") ? 'Prod' : 'Dev',
-                'version' => Configure::read('version'),
-                'url'     => 'http://gescomweb'
+                'name'    => Configure::read("name") . ' ' . Configure::read("prod") ? 'Prod' : 'Dev',
+                'version' => Configure::read('tag') ?? Configure::read('version'),
+                'url'     => 'http://gescomweb',
+                'user' => $_SESSION['Auth']['User']['id']
             ));
 
-            $bugsnag->setAppVersion(Configure::read('version'));
-            $bugsnag->setReleaseStage(Configure::read("prod") ?'production':'development');
+            $bugsnag->setAppVersion(Configure::read('tag') ?? Configure::read('version'));
+            $bugsnag->setReleaseStage(Configure::read("prod") ? 'production' : 'development');
+            $bugsnag->setAppType('CakePhP');
+            $bugsnag->registerCallback(function ($report) {
+                $report->setUser([
+                    'id' => $_SESSION['Auth']['User']['id'],
+                    'name' => 'Leeroy Jenkins',
+                    'email' => 'leeeeroy@jenkins.com',
+                ]);
+            });
 
             \Bugsnag\Handler::register($bugsnag);
         }
@@ -37,9 +46,9 @@ class ErrorHandlerMiddleware extends BaseErrorHandlerMiddleware
         return $bugsnag;
     }
 
-    
-    
-    
+
+
+
     /**
      * Handle an exception and generate an error response
      *
@@ -49,9 +58,7 @@ class ErrorHandlerMiddleware extends BaseErrorHandlerMiddleware
      */
     public function handleException(Throwable $exception, ServerRequestInterface $request): ResponseInterface
     {
-        static::getBugsnag()->notifyException($exception);
-        return parent::handleException($exception,$request);
+        static::getBugsnag($request)->notifyException($exception);
+        return parent::handleException($exception, $request);
     }
-
-    
 }
