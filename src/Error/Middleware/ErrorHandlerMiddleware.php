@@ -26,7 +26,7 @@ class ErrorHandlerMiddleware extends BaseErrorHandlerMiddleware
                 'name'    => Configure::read("name") . ' ' . Configure::read("prod") ? 'Prod' : 'Dev',
                 'version' => Configure::read('tag') ?? Configure::read('version'),
                 'url'     => 'http://gescomweb',
-                'user' => $_SESSION['Auth']['User']['id']
+                'user' => $_SESSION['UtilisateurConnecte.Gut']??$_SESSION['Auth']['User']['id']
             ));
 
             $bugsnag->setAppVersion(Configure::read('tag') ?? Configure::read('version'));
@@ -34,9 +34,7 @@ class ErrorHandlerMiddleware extends BaseErrorHandlerMiddleware
             $bugsnag->setAppType('CakePhP');
             $bugsnag->registerCallback(function ($report) {
                 $report->setUser([
-                    'id' => $_SESSION['Auth']['User']['id'],
-                    'name' => 'Leeroy Jenkins',
-                    'email' => 'leeeeroy@jenkins.com',
+                    'id' => $_SESSION['UtilisateurConnecte.Gut']??$_SESSION['Auth']['User']['id'],
                 ]);
             });
 
