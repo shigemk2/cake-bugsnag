@@ -21,7 +21,9 @@ Write your Bugsnag account info.
 // in `config/app.php`
 return [
   'Bugsnag' => [
-    'apiKey' => YOUR_Bugsnag_apiKey
+    'apiKey' => YOUR_Bugsnag_apiKey,
+    'userId' => YOUR_SESSION_USER_ID,//default => Auth.User.id in Session
+    'userName' => YOUR_SESSION_USER_NAME //default => Auth.User.name in Session
   ]
 ];
 ```
