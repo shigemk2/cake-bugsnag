@@ -26,16 +26,44 @@ class ErrorHandlerMiddleware extends BaseErrorHandlerMiddleware
                 'name'    => Configure::read("name") . ' ' . Configure::read("prod") ? 'Prod' : 'Dev',
                 'version' => Configure::read('tag') ?? Configure::read('version'),
                 'url'     => 'http://gescomweb',
-                'user' => $_SESSION['UtilisateurConnecte.Gut']??$_SESSION['Auth']['User']['id']
             ));
+
 
             $bugsnag->setAppVersion(Configure::read('tag') ?? Configure::read('version'));
             $bugsnag->setReleaseStage(Configure::read("prod") ? 'production' : 'development');
             $bugsnag->setAppType('CakePhP');
+            session_start();
             $bugsnag->registerCallback(function ($report) {
-                $report->setUser([
-                    'id' => $_SESSION['UtilisateurConnecte.Gut']??$_SESSION['Auth']['User']['id'],
-                ]);
+                $confUser = Configure::read('Bugsnag.userId');
+                $user = array();
+                if (!empty($confUser)) {
+                    $tabUser = explode('.', $confUser);
+                    
+                    foreach ($tabUser as $tab) {
+                        if (empty($user['id'])) {
+                            $user['id'] = $_SESSION[$tab];
+                        } else {
+                            $user['id'] = $user['id'][$tab];
+                        }
+                    }
+
+                    $confUser = Configure::read('Bugsnag.userName');
+                    if (!empty($confUser)) {
+                        $tabUser = explode('.', $confUser);
+                        
+                        foreach ($tabUser as $tab) {
+                            if (empty($user['name'])) {
+                                $user['name'] = $_SESSION[$tab];
+                            } else {
+                                $user['name'] = $user['name'][$tab];
+                            }
+                        }
+                    }
+
+                } else {
+                    $user = ["id" => $_SESSION['Auth']['User']['id'], "name" => $_SESSION['Auth']['User']['name']];
+                }
+                $report->setUser($user);
             });
 
             \Bugsnag\Handler::register($bugsnag);
