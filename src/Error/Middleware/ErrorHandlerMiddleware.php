@@ -38,28 +38,31 @@ class ErrorHandlerMiddleware extends BaseErrorHandlerMiddleware
                 $user = array();
                 if (!empty($confUser)) {
                     $tabUser = explode('.', $confUser);
-                    
+
                     foreach ($tabUser as $tab) {
                         if (empty($user['id'])) {
                             $user['id'] = $_SESSION[$tab];
                         } else {
-                            $user['id'] = $user['id'][$tab];
+                            if (isset($user['id'][$tab])) {
+                                $user['id'] = $user['id'][$tab];
+                            }
                         }
                     }
 
                     $confUser = Configure::read('Bugsnag.userName');
                     if (!empty($confUser)) {
                         $tabUser = explode('.', $confUser);
-                        
+
                         foreach ($tabUser as $tab) {
                             if (empty($user['name'])) {
                                 $user['name'] = $_SESSION[$tab];
                             } else {
-                                $user['name'] = $user['name'][$tab];
+                                if (isset($user['name'][$tab])) {
+                                    $user['name'] = $user['name'][$tab];
+                                }
                             }
                         }
                     }
-
                 } else {
                     $user = ["id" => $_SESSION['Auth']['User']['id'], "name" => $_SESSION['Auth']['User']['name']];
                 }
