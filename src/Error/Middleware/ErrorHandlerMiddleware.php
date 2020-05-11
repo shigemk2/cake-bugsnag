@@ -41,7 +41,9 @@ class ErrorHandlerMiddleware extends BaseErrorHandlerMiddleware
 
                     foreach ($tabUser as $tab) {
                         if (empty($user['id'])) {
-                            $user['id'] = $_SESSION[$tab];
+                            if (isset($_SESSION[$tab])) {
+                                $user['id'] = $_SESSION[$tab];
+                            }
                         } else {
                             if (isset($user['id'][$tab])) {
                                 $user['id'] = $user['id'][$tab];
@@ -55,7 +57,9 @@ class ErrorHandlerMiddleware extends BaseErrorHandlerMiddleware
 
                         foreach ($tabUser as $tab) {
                             if (empty($user['name'])) {
-                                $user['name'] = $_SESSION[$tab];
+                                if (isset($_SESSION[$tab])) {
+                                    $user['name'] = $_SESSION[$tab];
+                                }
                             } else {
                                 if (isset($user['name'][$tab])) {
                                     $user['name'] = $user['name'][$tab];
