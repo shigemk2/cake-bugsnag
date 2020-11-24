@@ -68,7 +68,8 @@ class ErrorHandlerMiddleware extends BaseErrorHandlerMiddleware
                         }
                     }
                 } else {
-                    $user = ["id" => $_SESSION['Auth']['User']['id'], "name" => $_SESSION['Auth']['User']['name']];
+                    
+                    $user = ["id" => $_SESSION['Auth']['User']['id']??'None', "name" => $_SESSION['Auth']['User']['name']]??'None';
                 }
                 $report->setUser($user);
             });
