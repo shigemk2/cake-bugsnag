@@ -1,5 +1,5 @@
 <?php
-namespace Ldubois\Bugsnag\Error;
+namespace Shigemk2\Bugsnag\Error;
 
 use Cake\Error\ErrorHandler as CakeErrorHandler;
 

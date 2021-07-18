@@ -1,6 +1,6 @@
 <?php
 
-namespace Ldubois\Bugsnag\Error;
+namespace Shigemk2\Bugsnag\Error;
 
 use Cake\Error\ConsoleErrorHandler as CakeConsoleErrorHandler;
 

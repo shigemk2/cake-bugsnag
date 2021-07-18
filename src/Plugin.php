@@ -1,11 +1,11 @@
 <?php
 
-namespace Ldubois\Bugsnag;
+namespace Shigemk2\Bugsnag;
 
 use Cake\Core\BasePlugin;
 use Cake\Error\Middleware\ErrorHandlerMiddleware as CakeErrorHandlerMiddleware;
 use Cake\Http\MiddlewareQueue;
-use Ldubois\Bugsnag\Error\Middleware\ErrorHandlerMiddleware;
+use Shigemk2\Bugsnag\Error\Middleware\ErrorHandlerMiddleware;
 
 class Plugin extends BasePlugin
 {

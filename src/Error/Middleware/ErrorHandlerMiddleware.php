@@ -1,6 +1,6 @@
 <?php
 
-namespace Ldubois\Bugsnag\Error\Middleware;
+namespace Shigemk2\Bugsnag\Error\Middleware;
 
 use Cake\Core\Configure;
 use Cake\Error\Middleware\ErrorHandlerMiddleware as BaseErrorHandlerMiddleware;

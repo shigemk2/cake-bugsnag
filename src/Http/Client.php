@@ -1,6 +1,6 @@
 <?php
 
-namespace Ldubois\Bugsnag\Http;
+namespace Shigemk2\Bugsnag\Http;
 
 use Cake\Core\Configure;
 use Cake\Core\InstanceConfigTrait;

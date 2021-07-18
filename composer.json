@@ -16,12 +16,12 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Ldubois\\Bugsnag\\": "src/"
+            "Shigemk2\\Bugsnag\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Ldubois\\Bugsnag\\Test\\": "tests/",
+            "Shigemk2\\Bugsnag\\Test\\": "tests/",
             "App\\": "tests/test_app/app/src/"
         }
     },

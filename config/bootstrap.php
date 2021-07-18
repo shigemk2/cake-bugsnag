@@ -1,11 +1,11 @@
 <?php
-namespace Ldubois\Bugsnag;
+namespace Shigemk2\Bugsnag;
 
 use Cake\Core\Configure;
 use Cake\Log\Log;
-use Ldubois\Bugsnag\Error\ConsoleErrorHandler;
-use Ldubois\Bugsnag\Error\ErrorHandler;
-use Ldubois\Bugsnag\Log\Engine\BugsnagLog;
+use Shigemk2\Bugsnag\Error\ConsoleErrorHandler;
+use Shigemk2\Bugsnag\Error\ErrorHandler;
+use Shigemk2\Bugsnag\Log\Engine\BugsnagLog;
 
 $isCli = PHP_SAPI === 'cli';
 if (!$isCli && strpos((env('argv')[0] ?? ''), '/phpunit') !== false) {

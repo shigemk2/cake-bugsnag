@@ -1,9 +1,9 @@
 <?php
 
-namespace Ldubois\Bugsnag\Log\Engine;
+namespace Shigemk2\Bugsnag\Log\Engine;
 
 use Cake\Log\Engine\BaseLog;
-use Ldubois\Bugsnag\Http\Client;
+use Shigemk2\Bugsnag\Http\Client;
 
 class BugsnagLog extends BaseLog
 {
